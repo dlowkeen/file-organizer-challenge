@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/dlowkeen/file-organizer-challenge/issues"
   },
-  "homepage": "https://github.com/dlowkeen/file-organizer-challenge#readme"
+  "homepage": "https://github.com/dlowkeen/file-organizer-challenge#readme",
+  "devDependencies": {
+    "@types/node": "^13.13.2",
+    "typescript": "^3.8.3"
+  }
 }
