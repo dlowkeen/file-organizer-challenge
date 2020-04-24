@@ -1,0 +1,21 @@
+{
+  "name": "file-organizer-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -P .",
+    "start": "node dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlowkeen/file-organizer-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dlowkeen/file-organizer-challenge/issues"
+  },
+  "homepage": "https://github.com/dlowkeen/file-organizer-challenge#readme"
+}
