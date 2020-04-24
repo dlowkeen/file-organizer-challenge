@@ -10,7 +10,7 @@ const readInterface = readline.createInterface({
 
 const globalStore: any = {};
 
-readInterface.on('line', function(line: string) {
+readInterface.on('line', (line: string) => {
     const args = helpers.parseArgs(line);
     logger.trace(line);
     if (args.length > 0) {
