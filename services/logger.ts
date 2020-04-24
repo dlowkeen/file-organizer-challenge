@@ -16,8 +16,8 @@ class Logger {
 		return new Logger();
 	}
 
-	public trace(customMsg: string, properties?: any) {
-		console.log(customMsg, JSON.stringify(properties));
+	public trace(customMsg: any) {
+		console.log(customMsg);
 	}
 
 	public error(customMsg: string, e: Error) {

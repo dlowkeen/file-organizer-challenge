@@ -1,9 +1,18 @@
 import logger from '../services/logger';
 
+/**
+ * Returns an array of the line split by spaces.
+ * @param line string
+ */
 export const parseArgs = (line: string) => { 
     return line.split(' ');
 }
 
+/**
+ * Takes the argument and decides which command to execute.
+ * @param args command and file paths
+ * @param store object containing file directory
+ */
 export const performAction = (args: string[], store: any) => {
     switch (args[0]) {
         case 'CREATE':
@@ -24,12 +33,22 @@ export const performAction = (args: string[], store: any) => {
     }
 }
 
-
+/**
+ * Initiates recursively adding the correct folder.
+ * @param path file path you wish to create
+ * @param obj global store/directory
+ */
 export const create = (path: string, obj: any) => {
     const pathArr = path.split('/');
     recursiveAdd(pathArr, obj);
 }
 
+/**
+ * Continues searching for the file path until it does not find the property.
+ * Then adds file to global store.
+ * @param path file path you wish to create
+ * @param obj global store/directory
+ */
 export const recursiveAdd = (path: string[], obj: any) => {
     const elem = path[0];
     if (obj.hasOwnProperty(elem)) {
@@ -40,6 +59,11 @@ export const recursiveAdd = (path: string[], obj: any) => {
     }
 }
 
+/**
+ * Initiates recursively removing the correct folder.
+ * @param path file path you wish to remove
+ * @param obj global store/directory
+ */
 export const remove = (path: string, obj: any) => {
     const pathArr = path.split('/');
     const result = recursiveRemove(pathArr, obj);
@@ -48,6 +72,12 @@ export const remove = (path: string, obj: any) => {
     }
 }
 
+/**
+ * Continues searching for the file path until it does not find the property.
+ * Then deletes the file on global store. If not found, returns the element.
+ * @param path file path you wish to create
+ * @param obj global store/directory
+ */
 export const recursiveRemove = (path: string[], obj: any): string | null => {
     const elem = path[0];
     if (obj.hasOwnProperty(elem)) {
@@ -62,13 +92,24 @@ export const recursiveRemove = (path: string[], obj: any): string | null => {
     }
 }
 
-export const move = (source: string, destination: string, globalStore: any) => {
+/**
+ * Moves source file to destination on the global store.
+ * @param source file path you wish to move
+ * @param destination location you wish to move sourec to
+ * @param obj global store/directory
+ */
+export const move = (source: string, destination: string, obj: any) => {
     const sourcePath = source.split('/');
     const destPath = destination.split('/');
-    const sourceRef = findSource(sourcePath, globalStore);
-    moveToDest(sourceRef, destPath, globalStore);
+    const sourceRef = findSource(sourcePath, obj);
+    moveToDest(sourceRef, destPath, obj);
 }
 
+/**
+ * Finds and deletes the specified file in path and returns a copy of the element.
+ * @param path file path you wish to search
+ * @param obj global store/directory
+ */
 export const findSource = (path: string[], obj: any): any => {
     const elem = path[0];
     if (obj.hasOwnProperty(elem)) {
@@ -84,6 +125,12 @@ export const findSource = (path: string[], obj: any): any => {
     }
 }
 
+/**
+ * Adds copied sourceNode to path.
+ * @param sourceNode copied source node
+ * @param path file path you wish to move to
+ * @param obj global store/directory
+ */
 export const moveToDest = (sourceNode: any, path: string[], obj: any): any => {
     const elem = path[0];
     if (obj.hasOwnProperty(elem)) {
@@ -101,6 +148,11 @@ export const moveToDest = (sourceNode: any, path: string[], obj: any): any => {
     }
 }
 
+/**
+ * Prints the global object with specified spaces as indents
+ * @param obj global store/directory
+ * @param spaces # of spaces for indents
+ */
 export const recursivePrint = (obj: any, spaces: number) => {
     let indents = '';
     for (let i  = 0; i < spaces; i++) {
@@ -112,11 +164,14 @@ export const recursivePrint = (obj: any, spaces: number) => {
     }
 }
 
+/**
+ * Returns an object with keys alphabetized.
+ * @param obj global store/directory
+ */
 export const alphabetizeObjProps = (obj: any) => {
     const ordered = {};
     Object.keys(obj).sort().forEach(function(key) {
         ordered[key] = alphabetizeObjProps(obj[key]);
     });
-
     return ordered;
 }
